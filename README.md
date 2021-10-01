@@ -1,8 +1,8 @@
 ﻿# Empiria Insurer
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3eb36cbce7564607855c8995a3796d77)](https://www.codacy.com/gh/Ontica/Empiria.Insurer/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Ontica/Empiria.Insurer&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/9a8d856284fb49efacc99ca5577907c2)](https://www.codacy.com/gh/Ontica/Empiria.Insurer/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Ontica/Empiria.Insurer&amp;utm_campaign=Badge_Grade)
 &nbsp; &nbsp;
-[![Maintainability](https://api.codeclimate.com/v1/badges/3982e4436bbd2779606f/maintainability)](https://codeclimate.com/github/Ontica/Empiria.Insurer/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/edf0d855b2aeeffefdf5/maintainability)](https://codeclimate.com/github/Ontica/Empiria.Insurer/maintainability)
 
 This repository contains the Empiria Insurer backend modules,
 in C# 8.0 and .NET Framework 4.8, with a Http/Json Web Api integration module
