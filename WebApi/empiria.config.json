@@ -1,0 +1,28 @@
+﻿{
+  "appName": "Empiria Insurer Web Api",
+  "description": "Empiria Insurer Web Api settings",
+  "version": "1.0",
+  "date": "2021-10-01",
+  "settings": [
+    {
+      "type": "",
+      "key": "ApplicationKey",
+      "value": "{{APPLICATION-KEY}}"
+    },
+    {
+      "type": "",
+      "key": "GlobalConfigurationFile",
+      "value": "{{GLOBAL-CONFIGURATION-FILE}}"
+    },
+    {
+      "type": "Data",
+      "key": "IsObjectIdGeneratorServer",
+      "value": true
+    },
+    {
+      "type": "WebApi",
+      "key": "IsPassThroughServer",
+      "value": false
+    }
+  ]
+}

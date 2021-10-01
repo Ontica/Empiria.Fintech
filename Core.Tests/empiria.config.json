@@ -1,0 +1,28 @@
+﻿{
+  "appName": "Empiria Insurer Tests",
+  "description": "Domain types, classes and services tests environment settings",
+  "version": "1.0",
+  "date": "2021-10-01",
+  "settings": [
+    {
+      "type": "",
+      "key": "ApplicationKey",
+      "value": "{{APPLICATION-KEY}}"
+    },
+    {
+      "type": "",
+      "key": "GlobalConfigurationFile",
+      "value": "{{GLOBAL-CONFIGURATION-FILE}}"
+    },
+    {
+      "type": "Data",
+      "key": "IsObjectIdGeneratorServer",
+      "value": true
+    },
+    {
+      "type": "Insurer.Tests",
+      "key": "SESSION_TOKEN",
+      "value": "{{TESTS_SESSION_TOKEN}}"
+    }
+  ]
+}
