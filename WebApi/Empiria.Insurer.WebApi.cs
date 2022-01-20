@@ -1,10 +1,10 @@
-﻿/* Empiria Insurer *******************************************************************************************
+﻿/* Empiria Insurtech *****************************************************************************************
 *                                                                                                            *
-*  System   : Empiria Insurer System                       Module  : Insurer Web Api                         *
-*  Assembly : Empiria.Insurer.WebApi.dll                   Pattern : Assembly Attributes File                *
+*  System   : Empiria Insurtech System                     Module  : Insurtech Web Api                       *
+*  Assembly : Empiria.Insurtech.WebApi.dll                 Pattern : Assembly Attributes File                *
 *                                                          License : Please read LICENSE.txt file            *
 *                                                                                                            *
-*  Summary  : Empiria Insurer Http/Json web services interface.                                              *
+*  Summary  : Empiria Insurtech Http/Json web services interface.                                            *
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;

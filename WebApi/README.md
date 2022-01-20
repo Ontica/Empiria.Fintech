@@ -1,7 +1,7 @@
-﻿# Empiria Insurer Web Api Module
+﻿# Empiria Insurtech Web Api Module
 
 This module contains the Http/Json web services interface, used to interact with
-the use cases and with other inner layers of the Empiria Insurer System.
+the use cases and with other inner layers of the Empiria Insurtech System.
 
 ## License
 

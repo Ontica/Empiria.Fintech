@@ -1,6 +1,6 @@
-﻿# Empiria Insurer Tests Module
+﻿# Empiria Insurtech Tests Module
 
-Tests suite for Empiria Insurer components.
+Tests suite for Empiria Insurtech components.
 
 ## License
 

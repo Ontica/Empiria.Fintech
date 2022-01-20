@@ -1,6 +1,6 @@
-﻿# Empiria Insurer Core Module
+﻿# Empiria Insurtech Core Module
 
-This is the core module of the Empiria Insurer System.
+This is the core module of the Empiria Insurtech System.
 
 Contains general purporse domain classes, types an services.
 

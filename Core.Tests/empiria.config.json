@@ -1,5 +1,5 @@
 ﻿{
-  "appName": "Empiria Insurer Tests",
+  "appName": "Empiria Insurtech Tests",
   "description": "Domain types, classes and services tests environment settings",
   "version": "1.0",
   "date": "2021-10-01",
@@ -20,7 +20,7 @@
       "value": true
     },
     {
-      "type": "Insurer.Tests",
+      "type": "Insurtech.Tests",
       "key": "SESSION_TOKEN",
       "value": "{{TESTS_SESSION_TOKEN}}"
     }

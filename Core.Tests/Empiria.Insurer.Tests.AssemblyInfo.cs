@@ -1,10 +1,10 @@
-﻿/* Empiria Insurer *******************************************************************************************
+﻿/* Empiria Insurtech *****************************************************************************************
 *                                                                                                            *
-*  System   : Empiria Insurer System                       Module  : Insurer Tests                           *
-*  Assembly : Empiria.Insurer.Tests.dll                    Pattern : Assembly Attributes File                *
+*  System   : Empiria Insurtech System                     Module  : Insurtech Tests                           *
+*  Assembly : Empiria.Insurtech.Tests.dll                    Pattern : Assembly Attributes File                *
 *                                                          License : Please read LICENSE.txt file            *
 *                                                                                                            *
-*  Summary  : Test suite for Empiria Insurer components.                                                     *
+*  Summary  : Test suite for Empiria Insurtech components.                                                   *
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;

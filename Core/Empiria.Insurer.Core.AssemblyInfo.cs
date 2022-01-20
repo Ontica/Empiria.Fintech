@@ -1,10 +1,10 @@
-﻿/* Empiria Insurer *******************************************************************************************
+﻿/* Empiria Insurtech *****************************************************************************************
 *                                                                                                            *
-*  System   : Empiria Insurer System                       Module  : Insurer Core components                 *
-*  Assembly : Empiria.Insurer.Core.dll                     Pattern : Assembly Attributes File                *
+*  System   : Empiria Insurtech Solution                   Module  : Insurtech Core components               *
+*  Assembly : Empiria.Insurtech.Core.dll                   Pattern : Assembly Attributes File                *
 *                                                          License : Please read LICENSE.txt file            *
 *                                                                                                            *
-*  Summary  : Empiria Insurer core types, classes and services.                                              *
+*  Summary  : Empiria Insurtech core types, classes and services.                                            *
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;
