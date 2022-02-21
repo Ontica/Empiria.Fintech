@@ -22,15 +22,15 @@ namespace Empiria.Insurtech.Policies.WebApi {
 
     #region Web Apis
 
-
     [HttpPost]
-    [Route("v1/insurtech/policies")]
-    public SingleObjectModel CreatePolicy([FromBody] PolicyFields fields) {
+    [Route("v1/insurtech/contracts")]
+    public SingleObjectModel CreateContract([FromBody] ContractFields fields) {
 
       base.RequireBody(fields);
+     
 
-      using (var usecases = PoliciesUseCases.UseCaseInteractor()) {        
-        PolicyDto policy = usecases.CreatePolicy(fields);
+      using (var usecases = ContractsUseCases.UseCaseInteractor()) {
+        ContractDto policy = usecases.CreateContract(fields);
 
         return new SingleObjectModel(base.Request, policy);
       }
