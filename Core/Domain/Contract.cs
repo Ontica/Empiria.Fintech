@@ -29,6 +29,15 @@ namespace Empiria.Insurtech.Policies.Domain {
 
   }  // ContractType
 
+  /// <summary>Enumerates the different contractparty types.</summary>
+  public enum ContractPartyType {
+
+    Contratante = 1,
+
+    Beneficiario = 2
+
+  }  // ContractPartyType
+
   /// <summary>Represent a contract.</summary>
   internal class Contract {
 
@@ -141,6 +150,25 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.EndDate = ExecutionServer.DateMaxValue;
       this.ContractTrackDIF = "";
       this.ContractTypeId = (ContractType) Enum.Parse(typeof(ContractType), fields.ContractType);
+
+      CreateContratante(fields.Contractor);
+      CreateBeneficiary(fields.Beneficiary);
+    }
+
+    private void CreateContratante(PartyFields contractorFields) {
+      var contratante = new Party(contractorFields);
+      contratante.Save();
+
+      var contratanteRelacion = new ContractParty(this.ContractId, contratante.PartyId, (int) ContractPartyType.Contratante);
+      contratanteRelacion.Save();
+    }
+
+    private void CreateBeneficiary(PartyFields beneficiaryFields) {
+      var benefeciary = new Party(beneficiaryFields);
+      benefeciary.Save();
+
+      var benefeciaryRelation = new ContractParty(this.ContractId, benefeciary.PartyId, (int) ContractPartyType.Beneficiario);
+      benefeciaryRelation.Save();
     }
 
     private string GenerateContractNumber() {
