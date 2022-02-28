@@ -11,9 +11,13 @@ using System;
 
 namespace Empiria.Insurtech.Policies.Adapters {
   /// <summary>Input DTO for an insurance contract.</summary>
-  public class ContractFields {  
-      
-    public string ContractType {
+  public class ContractFields {
+
+    public string ContractUID {
+      get; set;
+    } = string.Empty;
+    
+    public string ContractTypeUID {
       get; set;
     }
 

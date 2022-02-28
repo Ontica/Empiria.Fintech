@@ -2,52 +2,28 @@
 *                                                                                                            *
 *  Module   : Policies Management                          Component : Interface adapters                    *
 *  Assembly : Empiria.Insurtech.dll                        Pattern   : Output DTO                            *
-*  Type     : ContractDto                                  License   : Please read LICENSE.txt file          *
+*  Type     : ContractTypeDto                                  License   : Please read LICENSE.txt file          *
 *                                                                                                            *
-*  Summary  : Output DTO for an insurance Contract.                                                          *
+*  Summary  : Output DTO for a contract type.                                                               *
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;
 
-using Empiria.Insurtech.Policies.Domain;
-
 namespace Empiria.Insurtech.Policies.Adapters {
 
-  /// <summary>Output DTO for an insurance Contract.</summary>
-  public class ContractDto {
+  /// <summary>Output DTO for a contract type. </summary>
+  public class ContracTypeDto {
 
-    public int ContractTrackId {
+    public string UID {
       get; internal set;
     }
 
-    public string ContractTrackUID {
+    public string Name {
       get; internal set;
     }
 
-    public int ContractId {
-      get; internal set;
-    }
 
-    public ContracTypeDto ContractTypeInfo {
-      get; internal set;
-    }
+  }  // class ContracTypeDto
 
-    public string ContractNo {
-      get; internal set;
-    }
 
-    public char ContractStatus {
-      get; internal set;
-    }
-
-    public DateTime StartDate {
-      get; internal set;
-    }
-
-    public DateTime EndDate {
-      get; internal set;
-    }
-
-  } // class ContractDto
-
-} // Empiria.Insurtech.Policies.Adapters
+} // namespace Empiria.Insurtech.Policies.Adapters

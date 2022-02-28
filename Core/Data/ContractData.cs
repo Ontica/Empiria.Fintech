@@ -22,7 +22,7 @@ namespace Empiria.Insurtech.Policies.Data {
     internal static void Write(Contract o) {
       
       var op = DataOperation.Parse("writeFTHContracts", o.ContractTrackId, o.ContractTrackUID,
-                                  o.ContractId, o.ContractTypeId, o.ContractNo, o.ExtData.ToString(),
+                                  o.ContractId, o.ContractType.Id, o.ContractNo, o.ExtData.ToString(),
                                   o.ContractKeywords, o.ModifiedById, o.ContractStatus, o.StartDate,
                                  o.EndDate, o.ContractTrackDIF);
 
@@ -37,6 +37,13 @@ namespace Empiria.Insurtech.Policies.Data {
       return GetNextId("ContractTrackId");
     }
 
+    internal static Contract GetContract(int id) {
+      var sql = $"SELECT * FROM FTHContracts WHERE ContractId  = {id}";
+
+      var dataOperation = DataOperation.Parse(sql);
+
+      return DataReader.GetPlainObject<Contract>(dataOperation);
+    }
 
     static private int GetNextId(string fieldId) {
       var sql = "SELECT max(" + fieldId + ") from  FTHContracts" ;
@@ -46,6 +53,10 @@ namespace Empiria.Insurtech.Policies.Data {
       var id = Empiria.Data.DataReader.GetScalar<int>(op) + 1;
       return id;
 
+    }
+
+    internal static void Update() {
+      throw new NotImplementedException();
     }
 
     #endregion Internal methods

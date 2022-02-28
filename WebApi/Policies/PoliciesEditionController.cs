@@ -28,11 +28,22 @@ namespace Empiria.Insurtech.Policies.WebApi {
 
       base.RequireBody(fields);
      
-
       using (var usecases = ContractsUseCases.UseCaseInteractor()) {
         ContractDto policy = usecases.CreateContract(fields);
 
         return new SingleObjectModel(base.Request, policy);
+      }
+    }
+       
+
+    [HttpGet]
+    [Route("v1/insurtech/contracttypes")]
+    public SingleObjectModel GetContract() {
+
+      using (var usecases = ContractsUseCases.UseCaseInteractor()) {
+        FixedList<ContracTypeDto> contract = usecases.GetContractTypes();
+
+        return new SingleObjectModel(base.Request, contract);
       }
     }
 

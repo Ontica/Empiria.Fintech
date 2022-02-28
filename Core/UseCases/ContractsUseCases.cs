@@ -13,6 +13,7 @@ using Empiria.Services;
 
 using Empiria.Insurtech.Policies.Adapters;
 using Empiria.Insurtech.Policies.Domain;
+using System;
 
 namespace Empiria.Insurtech.Policies.UseCases {
 
@@ -42,6 +43,15 @@ namespace Empiria.Insurtech.Policies.UseCases {
       var contractDto =  ContractMapper.Map(contract);
       return contractDto;
     }
+        
+
+    public FixedList<ContracTypeDto> GetContractTypes() {
+      FixedList<ContractType> list = ContractType.GetList();
+
+      return ContracTypeMapper.Map(list);
+     
+    }
+
 
     #endregion  Use cases
 

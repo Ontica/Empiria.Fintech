@@ -190,7 +190,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.PartyTypeId = 0;
       this.PartyFullName = participantField.Name;
       this.PartyAddress = participantField.Address;
-      this.PostalCode = participantField.Zip;
+      this.PostalCode = participantField.Zip;     
       this.LocationId = -1;
       this.StateId = 0;
       this.DateOfBirth = participantField.DateOfBirth;
@@ -202,9 +202,10 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.PhoneNumber = participantField.PhoneNumber;
       this.PartyKeywords = "";
       this.PartyStatus = 'C';
-      this.StartDate = DateTime.Now;
+      this.StartDate = DateTime.Today;
       this.EndDate = ExecutionServer.DateMaxValue;
       this.PartyTrackDIF = "";
+      
     }
 
     #endregion Private methods

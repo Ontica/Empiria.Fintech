@@ -21,7 +21,7 @@ namespace Empiria.Insurtech.Policies.Adapters {
         ContractTrackId = contract.ContractTrackId,
         ContractTrackUID = contract.ContractTrackUID,
         ContractId = contract.ContractId,
-        ContractType = Enum.GetName(typeof(ContractType), contract.ContractTypeId),
+        ContractTypeInfo = ContracTypeMapper.Map(contract.ContractType),
         ContractNo = contract.ContractNo,
         ContractStatus = contract.ContractStatus,
         StartDate = contract.StartDate, 

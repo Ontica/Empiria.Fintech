@@ -17,17 +17,7 @@ using Empiria.Insurtech.Policies.Data;
 
 
 namespace Empiria.Insurtech.Policies.Domain { 
-
-  /// <summary>Enumerates the different contract types.</summary>
-  public enum ContractType {
-
-    Escencial = 1,
-
-    Optimo = 2,
-
-    Plus = 3
-
-  }  // ContractType
+   
 
   /// <summary>Enumerates the different contractparty types.</summary>
   public enum ContractPartyType {
@@ -48,37 +38,50 @@ namespace Empiria.Insurtech.Policies.Domain {
     }
 
     public Contract(ContractFields fields) {
-     Create(fields);
-    }      
+      Create(fields);
+    }
+
+    internal static Contract Parse(int id) {
+      return ContractData.GetContract(id);
+    }
 
     #endregion Constructors and parsers
 
     #region Public properties
 
+    [DataField("ContractTrackId")]
     public int ContractTrackId {
       get;
       private set;
     }
 
+
+    [DataField("ContractTrackUID")]
     public string ContractTrackUID {
       get;
       private set;
     }
 
+
+    [DataField("ContractId")]
     public int ContractId {
       get;
       private set;
     }
 
-    public ContractType ContractTypeId {
+
+    [DataField("ContractTypeId")]
+    public ContractType ContractType {
       get;
       private set;
     }
 
+    [DataField("ContractNo")]
     public string ContractNo {
       get;
       private set;
     }
+
 
     [DataField("ContractExtData", IsOptional = true)]
     public JsonObject ExtData {
@@ -95,31 +98,43 @@ namespace Empiria.Insurtech.Policies.Domain {
       }
     }
 
+
+    [DataField("ContractKeywords")]
     public string ContractKeywords {
       get;
       private set;
     }
 
+
+    [DataField("ModifiedById")]
     public int ModifiedById {
       get;
       private set;
     }
 
+
+    [DataField("ContractStatus", Default = 'C')]
     public char ContractStatus {
       get;
       private set;
-    }
+    } = 'C';
 
+
+    [DataField("StartDate")]
     public DateTime StartDate {
       get;
       private set;
     }
 
+
+    [DataField("EndDate")]
     public DateTime EndDate {
       get;
       private set;
     } = ExecutionServer.DateMaxValue;
 
+
+    [DataField("ContractTrackDIF")]
     public string ContractTrackDIF {
       get;
       private set;
@@ -134,6 +149,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       ContractData.Write(this);  
     }
 
+
     #endregion Methods
 
     #region Private methods
@@ -142,6 +158,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.ContractTrackId = ContractData.GetContractTrackId();
       this.ContractTrackUID = Guid.NewGuid().ToString();
       this.ContractId = ContractData.GetContractId();
+      this.ContractType = ContractType.Parse(fields.ContractTypeUID);
       this.ContractNo = GenerateContractNumber();
       this.ContractKeywords = "";
       this.ModifiedById = -1;
@@ -149,8 +166,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.StartDate = DateTime.Today;
       this.EndDate = ExecutionServer.DateMaxValue;
       this.ContractTrackDIF = "";
-      this.ContractTypeId = (ContractType) Enum.Parse(typeof(ContractType), fields.ContractType);
-
+      
       CreateContratante(fields.Contractor);
       CreateBeneficiary(fields.Beneficiary);
     }
@@ -174,14 +190,14 @@ namespace Empiria.Insurtech.Policies.Domain {
     private string GenerateContractNumber() {
       StringBuilder contractNumber = new StringBuilder("PF");
 
-      switch (this.ContractTypeId) {
-        case ContractType.Optimo:
+      switch (this.ContractType.Name) {
+        case "Optimo" :
           contractNumber.Append("OP");
           break;
-        case ContractType.Escencial:
+        case "Escencial":
           contractNumber.Append("ES");
           break;
-        case ContractType.Plus:
+        case "Plus":
           contractNumber.Append("PL");
           break; 
       }
