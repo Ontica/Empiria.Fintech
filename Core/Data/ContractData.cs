@@ -19,14 +19,12 @@ namespace Empiria.Insurtech.Policies.Data {
 
   static internal class ContractData {
   
-    internal static void Write(Contract o) {
-      
-      var op = DataOperation.Parse("writeFTHContracts", o.ContractTrackId, o.ContractTrackUID,
-                                  o.ContractId, o.ContractType.Id, o.ContractNo, o.ExtData.ToString(),
-                                  o.ContractKeywords, o.ModifiedById, o.ContractStatus, o.StartDate,
-                                 o.EndDate, o.ContractTrackDIF);
+    internal static void Delete(int id) {
+      var sql = $"UPDATE FTHContracts SET ContractStatus = 'X' WHERE ContractId = {id}";
 
-      DataWriter.Execute(op);
+      var dataOperation = DataOperation.Parse(sql);
+
+      DataWriter.Execute(dataOperation);
     }
 
 
@@ -57,6 +55,7 @@ namespace Empiria.Insurtech.Policies.Data {
       return GetNextId("ContractTrackId");
     }
 
+
     static private int GetNextId(string fieldId) {
       var sql = "SELECT max(" + fieldId + ") from  FTHContracts" ;
 
@@ -64,12 +63,16 @@ namespace Empiria.Insurtech.Policies.Data {
 
       var id = Empiria.Data.DataReader.GetScalar<int>(op) + 1;
       return id;
-
     }
 
 
-    internal static void Update() {
-      throw new NotImplementedException();
+    internal static void Write(Contract o) {
+      var op = DataOperation.Parse("writeFTHContracts", o.ContractTrackId, o.ContractTrackUID,
+                                  o.ContractId, o.ContractType.Id, o.ContractNo, o.ExtData.ToString(),
+                                  o.ContractKeywords, o.ModifiedById, o.ContractStatus, o.StartDate,
+                                 o.EndDate, o.ContractTrackDIF);
+
+      DataWriter.Execute(op);
     }
 
     #endregion Internal methods

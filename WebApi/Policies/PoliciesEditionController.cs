@@ -61,6 +61,18 @@ namespace Empiria.Insurtech.Policies.WebApi {
       }
     }
 
+
+    [HttpDelete]
+    [Route("v1/insurtech/contracts/{uid}")]
+    public NoDataModel DeleteContract([FromUri] string uid) {
+
+      using (var usecases = ContractsUseCases.UseCaseInteractor()) {
+        usecases.DeleteContract(uid);
+
+        return new NoDataModel(base.Request);
+      }
+    }
+
     #endregion Web Apis
 
   }  // class PoliciesEditionController

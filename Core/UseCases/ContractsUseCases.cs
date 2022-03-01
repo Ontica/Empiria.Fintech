@@ -42,7 +42,16 @@ namespace Empiria.Insurtech.Policies.UseCases {
 
       var contractDto =  ContractMapper.Map(contract);
       return contractDto;
-    }     
+    }
+
+
+    public void DeleteContract(string uid) {
+      Assertion.Assert(uid != String.Empty, "uid");
+
+      var contract = Contract.Parse(uid);
+     
+      contract.Delete();
+    }
 
 
     public FixedList<ContracTypeDto> GetContractTypes() {

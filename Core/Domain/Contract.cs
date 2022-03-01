@@ -149,6 +149,10 @@ namespace Empiria.Insurtech.Policies.Domain {
 
     #region Methods
 
+    internal void Delete() {
+      ContractData.Delete(this.ContractId);
+    }
+
 
     internal void Save() {   
       ContractData.Write(this);  
