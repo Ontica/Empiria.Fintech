@@ -8,6 +8,7 @@
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;
+using System.Collections.Generic;
 
 using Empiria.Data;
 using Empiria.Insurtech.Policies.Domain;
@@ -18,6 +19,25 @@ namespace Empiria.Insurtech.Policies.Data {
   static internal class PartyData {
 
     #region Public methods
+
+    internal static void Delete(int partyId) {
+      var op = $"UPDATE FTHParties SET PartyStatus = 'X' WHERE PartyId = {partyId} ";
+
+      var dataOperation = DataOperation.Parse(op);
+
+      DataWriter.Execute(dataOperation);  
+    }
+
+
+    internal static List<Party> GetParties(int contractId) {
+      var op = $"SELECT * FROM FTHParties INNER JOIN FTHContractParties ON " +
+               "FTHParties.PartyId = FTHContractParties.ContractPartyId " +
+              $"WHERE FTHContractParties.ContractId = {contractId} ";
+
+      var dataOperation = DataOperation.Parse(op);
+
+      return DataReader.GetPlainObjectList<Party>(dataOperation);
+    }
 
     internal static Party GetParty(int id) {
       var op = $"SELECT * FROM FTHParties WHERE PartyId ={id}";
@@ -71,8 +91,7 @@ namespace Empiria.Insurtech.Policies.Data {
 
       return Empiria.Data.DataReader.GetScalar<int>(op) + 1;      
     }
-
-   
+      
 
     #endregion Private methods
   } // class ParticiantData

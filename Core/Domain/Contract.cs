@@ -9,6 +9,7 @@
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;
 using System.Text;
+using System.Collections.Generic;
 
 using Empiria.Json;
 
@@ -65,7 +66,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       get;
       private set;
     }
-       
+
 
     [DataField("ContractId")]
     public int ContractId {
@@ -151,6 +152,16 @@ namespace Empiria.Insurtech.Policies.Domain {
 
     internal void Delete() {
       ContractData.Delete(this.ContractId);
+    }
+
+
+    internal void DelteteContractParties() {
+      List<Party> parties = PartyData.GetParties(this.ContractId);
+
+      foreach (Party part in parties) {
+        part.Delete();
+      }
+      
     }
 
 

@@ -24,12 +24,12 @@ namespace Empiria.Insurtech.Policies.Domain {
     }
 
     public Party(PartyFields participantField) {
-      Create(participantField);     
+      Create(participantField);
     }
 
 
     internal static Party Parse(int id) {
-     return  PartyData.GetParty(id);
+      return PartyData.GetParty(id);
     }
 
 
@@ -170,7 +170,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       internal set;
     }
 
-    [DataField("PartyStatus", Default ='C')]
+    [DataField("PartyStatus", Default = 'C')]
     public char PartyStatus {
       get;
       internal set;
@@ -196,6 +196,10 @@ namespace Empiria.Insurtech.Policies.Domain {
 
     #endregion Public properties
 
+
+    internal void Delete() {
+      PartyData.Delete(this.PartyId);
+    }
 
     internal void Save() {
       PartyData.Write(this);

@@ -49,7 +49,8 @@ namespace Empiria.Insurtech.Policies.UseCases {
       Assertion.Assert(uid != String.Empty, "uid");
 
       var contract = Contract.Parse(uid);
-     
+
+      contract.DelteteContractParties();
       contract.Delete();
     }
 
