@@ -19,9 +19,28 @@ namespace Empiria.Insurtech.Policies.Data {
 
     #region Public methods
 
+    internal static Party GetParty(int id) {
+      var op = $"SELECT * FROM FTHParties WHERE PartyId ={id}";
+      
+      var dataOperation = DataOperation.Parse(op);
+
+      return DataReader.GetPlainObject<Party>(dataOperation);
+    }
+
+
+    internal static Party GetParty(string uid) {
+      var op = $"SELECT * FROM FTHParties WHERE PartyTrackUID = '{uid}'";
+
+      var dataOperation = DataOperation.Parse(op);
+
+      return DataReader.GetPlainObject<Party> (dataOperation);
+    }
+
+
     static internal int GetPartyTrackId() {
       return GetNextId("PartyTrackId");
     }
+    
 
     static internal int GetPartyId() {
       return GetNextId("PartyTrackId");
@@ -35,6 +54,7 @@ namespace Empiria.Insurtech.Policies.Data {
 
       DataWriter.Execute(op);
     }
+        
 
     #endregion Public methods
 

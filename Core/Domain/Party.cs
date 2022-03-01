@@ -25,52 +25,71 @@ namespace Empiria.Insurtech.Policies.Domain {
 
     public Party(PartyFields participantField) {
       Create(participantField);     
-    }   
+    }
+
+
+    internal static Party Parse(int id) {
+     return  PartyData.GetParty(id);
+    }
+
+
+    internal static Party Parse(string uid) {
+      return PartyData.GetParty(uid);
+    }
 
     #endregion Constructors and parsers
 
     #region Public properties
 
+    [DataField("PartyTrackId")]
     public int PartyTrackId {
       get;
       internal set;
     }
 
+    [DataField("PartyTrackUID")]
     public string PartyTrackUID {
       get;
       internal set;
     }
 
+    [DataField("PartyId")]
     public int PartyId {
       get;
       internal set;
     }
 
+    [DataField("PartyTypeId")]
     public int PartyTypeId {
       get;
       internal set;
     }
 
+    [DataField("PartyFullName")]
     public string PartyFullName {
       get;
       internal set;
     }
 
+    [DataField("PartyAddress")]
     public string PartyAddress {
       get;
       internal set;
     }
 
+    [DataField("PostalCode")]
     public string PostalCode {
       get;
       internal set;
     }
 
+    [DataField("LocationId")]
     public int LocationId {
       get;
       internal set;
     }
 
+    [DataField("StateId")]
     public int StateId {
       get;
       internal set;
@@ -145,26 +164,31 @@ namespace Empiria.Insurtech.Policies.Domain {
       }
     }
 
+    [DataField("PartyKeywords")]
     public string PartyKeywords {
       get;
       internal set;
     }
 
+    [DataField("PartyStatus", Default ='C')]
     public char PartyStatus {
       get;
       internal set;
-    }
+    } = 'C';
 
+    [DataField("StartDate")]
     public DateTime StartDate {
       get;
       internal set;
     }
 
+    [DataField("EndDate")]
     public DateTime EndDate {
       get;
       internal set;
     } = ExecutionServer.DateMaxValue;
 
+    [DataField("PartyTrackDIF")]
     public string PartyTrackDIF {
       get;
       internal set;
@@ -175,6 +199,22 @@ namespace Empiria.Insurtech.Policies.Domain {
 
     internal void Save() {
       PartyData.Write(this);
+    }
+
+
+    internal void Update(PartyFields fields) {
+      Assertion.AssertObject(fields, "fields");
+
+      this.PartyFullName = FieldPatcher.PatchField(fields.Name, this.PartyFullName);
+      this.PartyAddress = FieldPatcher.PatchField(fields.Address, this.PartyAddress);
+      this.PostalCode = FieldPatcher.PatchField(fields.Zip, this.PostalCode);
+      this.DateOfBirth = FieldPatcher.PatchField(fields.DateOfBirth, this.DateOfBirth);
+      this.Gender = FieldPatcher.PatchField(fields.Gender, this.Gender);
+      this.RFC = FieldPatcher.PatchField(fields.RFC, this.RFC);
+      this.INE = FieldPatcher.PatchField(fields.INE, this.INE);
+      this.CURP = FieldPatcher.PatchField(fields.CURP, this.CURP);
+      this.CellPhoneNumber = FieldPatcher.PatchField(fields.CellPhoneNumber, this.CellPhoneNumber);
+      this.PhoneNumber = FieldPatcher.PatchField(fields.PhoneNumber, this.PhoneNumber);        
     }
 
     #region Public methods
@@ -204,8 +244,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.PartyStatus = 'C';
       this.StartDate = DateTime.Today;
       this.EndDate = ExecutionServer.DateMaxValue;
-      this.PartyTrackDIF = "";
-      
+      this.PartyTrackDIF = "";      
     }
 
     #endregion Private methods

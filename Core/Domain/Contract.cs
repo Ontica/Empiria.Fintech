@@ -65,7 +65,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       get;
       private set;
     }
-
+       
 
     [DataField("ContractId")]
     public int ContractId {
@@ -149,6 +149,7 @@ namespace Empiria.Insurtech.Policies.Domain {
 
     #region Methods
 
+
     internal void Save() {   
       ContractData.Write(this);  
     }
@@ -159,6 +160,15 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.ContractType = FieldPatcher.PatchField(fields.ContractTypeUID, this.ContractType);
       this.ContractPayment = FieldPatcher.PatchField(fields.PaymentType, this.ContractPayment);
       this.StartDate = FieldPatcher.PatchField(Convert.ToDateTime(fields.StartDate),this.StartDate);
+    }
+
+
+    internal void UpdateParty(PartyFields fields) {
+      var party = Party.Parse(fields.UID);
+
+      party.Update(fields);
+
+      party.Save();
     }
 
     #endregion Methods

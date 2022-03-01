@@ -14,6 +14,10 @@ namespace Empiria.Insurtech.Policies.Adapters {
   /// <summary>Input DTO for an partincipant.</summary>
   public class PartyFields {
 
+    public string UID {
+      get; set;
+    }
+
     public string Name {
       get; set;
     }
