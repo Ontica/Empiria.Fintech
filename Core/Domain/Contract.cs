@@ -45,6 +45,10 @@ namespace Empiria.Insurtech.Policies.Domain {
       return ContractData.GetContract(id);
     }
 
+    internal static Contract Parse(string uid) {
+      return ContractData.GetContract(uid);
+    }
+
     #endregion Constructors and parsers
 
     #region Public properties
@@ -150,6 +154,13 @@ namespace Empiria.Insurtech.Policies.Domain {
     }
 
 
+    internal void Update(ContractFields fields) {
+      Assertion.AssertObject(fields, "fields");
+      this.ContractType = FieldPatcher.PatchField(fields.ContractTypeUID, this.ContractType);
+      this.ContractPayment = FieldPatcher.PatchField(fields.PaymentType, this.ContractPayment);
+      this.StartDate = FieldPatcher.PatchField(Convert.ToDateTime(fields.StartDate),this.StartDate);
+    }
+
     #endregion Methods
 
     #region Private methods
@@ -166,7 +177,8 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.StartDate = DateTime.Today;
       this.EndDate = ExecutionServer.DateMaxValue;
       this.ContractTrackDIF = "";
-      
+      this.ContractPayment = fields.PaymentType; 
+
       CreateContratante(fields.Contractor);
       CreateBeneficiary(fields.Beneficiary);
     }

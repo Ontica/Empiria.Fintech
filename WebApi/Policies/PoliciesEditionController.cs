@@ -48,6 +48,19 @@ namespace Empiria.Insurtech.Policies.WebApi {
     }
 
 
+    [HttpPut]
+    [Route("v1/insurtech/contracts")]
+    public SingleObjectModel UpdateContract([FromBody] ContractFields fields) {
+
+      base.RequireBody(fields);
+
+      using (var usecases = ContractsUseCases.UseCaseInteractor()) {
+        ContractDto contract = usecases.UpdateContract(fields);
+
+        return new SingleObjectModel(base.Request, contract);
+      }
+    }
+
     #endregion Web Apis
 
   }  // class PoliciesEditionController

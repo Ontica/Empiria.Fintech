@@ -29,20 +29,32 @@ namespace Empiria.Insurtech.Policies.Data {
       DataWriter.Execute(op);
     }
 
-    static internal int GetContractId() {
-      return GetNextId("ContractId");
+
+    internal static Contract GetContract(string uid) {
+      var sql = "SELECT * FROM FTHContracts WHERE ContractTrackUID  ='" +  uid + "'";
+
+      var dataOperation = DataOperation.Parse(sql);
+
+      return DataReader.GetPlainObject<Contract>(dataOperation);
     }
 
-    static internal int GetContractTrackId() {
-      return GetNextId("ContractTrackId");
-    }
-
+   
     internal static Contract GetContract(int id) {
       var sql = $"SELECT * FROM FTHContracts WHERE ContractId  = {id}";
 
       var dataOperation = DataOperation.Parse(sql);
 
       return DataReader.GetPlainObject<Contract>(dataOperation);
+    }
+
+
+    static internal int GetContractId() {
+      return GetNextId("ContractId");
+    }
+
+
+    static internal int GetContractTrackId() {
+      return GetNextId("ContractTrackId");
     }
 
     static private int GetNextId(string fieldId) {
@@ -54,6 +66,7 @@ namespace Empiria.Insurtech.Policies.Data {
       return id;
 
     }
+
 
     internal static void Update() {
       throw new NotImplementedException();

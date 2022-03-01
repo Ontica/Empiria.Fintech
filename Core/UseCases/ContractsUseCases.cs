@@ -48,8 +48,18 @@ namespace Empiria.Insurtech.Policies.UseCases {
     public FixedList<ContracTypeDto> GetContractTypes() {
       FixedList<ContractType> list = ContractType.GetList();
 
-      return ContracTypeMapper.Map(list);
-     
+      return ContracTypeMapper.Map(list);     
+    }
+
+
+    public ContractDto UpdateContract(ContractFields fields) {
+      Assertion.AssertObject(fields, "fields");
+
+      var contract = Contract.Parse(fields.ContractUID);
+      contract.Update(fields);
+
+      contract.Save();
+      return ContractMapper.Map(contract);
     }
 
 

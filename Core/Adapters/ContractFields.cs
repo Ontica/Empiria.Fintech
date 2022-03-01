@@ -25,7 +25,7 @@ namespace Empiria.Insurtech.Policies.Adapters {
       get; set;
     }
 
-    public string ContractStartDate {
+    public string StartDate {
       get; set;
     }
 
