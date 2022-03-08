@@ -48,6 +48,10 @@ namespace Empiria.Insurtech.Policies.Adapters {
       get; internal set;
     }
 
+    public FixedList<PartyDto> Parties{
+      get; internal set;
+    }
+
   } // class ContractDto
 
 } // Empiria.Insurtech.Policies.Adapters

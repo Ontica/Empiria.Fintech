@@ -29,13 +29,10 @@ namespace Empiria.Insurtech.Policies.Adapters {
       get; set;
     }
 
-    public PartyFields Beneficiary {
+    public FixedList<PartyFields> Parties {
       get; set;
     }
-
-    public PartyFields Contractor {
-      get; set;
-    }
+       
 
 
   } //class ContractFields

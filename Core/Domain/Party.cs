@@ -231,7 +231,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.PartyTrackId = PartyData.GetPartyTrackId();
       this.PartyTrackUID = Guid.NewGuid().ToString();
       this.PartyId = PartyData.GetPartyId();
-      this.PartyTypeId = 0;
+      this.PartyTypeId = participantField.TypeId;
       this.PartyFullName = participantField.Name;
       this.PartyAddress = participantField.Address;
       this.PostalCode = participantField.Zip;     

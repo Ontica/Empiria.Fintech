@@ -17,20 +17,12 @@ using Empiria.Insurtech.Policies.Adapters;
 using Empiria.Insurtech.Policies.Data;
 
 
-namespace Empiria.Insurtech.Policies.Domain { 
-   
+namespace Empiria.Insurtech.Policies.Domain {
 
-  /// <summary>Enumerates the different contractparty types.</summary>
-  public enum ContractPartyType {
-
-    Contratante = 1,
-
-    Beneficiario = 2
-
-  }  // ContractPartyType
 
   /// <summary>Represent a contract.</summary>
   internal class Contract {
+    
 
     #region Constructors and parsers
 
@@ -49,6 +41,7 @@ namespace Empiria.Insurtech.Policies.Domain {
     internal static Contract Parse(string uid) {
       return ContractData.GetContract(uid);
     }
+       
 
     #endregion Constructors and parsers
 
@@ -146,6 +139,12 @@ namespace Empiria.Insurtech.Policies.Domain {
     }
 
 
+    public List<Party> Parties {
+      get;
+      private set;
+    }
+
+
     #endregion Public properties
 
     #region Methods
@@ -169,6 +168,15 @@ namespace Empiria.Insurtech.Policies.Domain {
       ContractData.Write(this);  
     }
 
+    internal void SaveContractParties(FixedList<PartyFields> parties) {
+
+      foreach (PartyFields party in parties) {
+        AddParty(party);
+      }
+
+      this.Parties = PartyData.GetParties(this.ContractId);    
+    }
+
 
     internal void Update(ContractFields fields) {
       Assertion.AssertObject(fields, "fields");
@@ -190,6 +198,14 @@ namespace Empiria.Insurtech.Policies.Domain {
 
     #region Private methods
 
+    private void AddParty(PartyFields partyFields) {
+      var party = new Party(partyFields);
+      party.Save();
+
+      var contratanteRelacion = new ContractParty(this.ContractId, party.PartyId, party.PartyTypeId);
+      contratanteRelacion.Save();
+    }
+
     private void Create(ContractFields fields) {
       this.ContractTrackId = ContractData.GetContractTrackId();
       this.ContractTrackUID = Guid.NewGuid().ToString();
@@ -204,25 +220,8 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.ContractTrackDIF = "";
       this.ContractPayment = fields.PaymentType; 
 
-      CreateContratante(fields.Contractor);
-      CreateBeneficiary(fields.Beneficiary);
     }
 
-    private void CreateContratante(PartyFields contractorFields) {
-      var contratante = new Party(contractorFields);
-      contratante.Save();
-
-      var contratanteRelacion = new ContractParty(this.ContractId, contratante.PartyId, (int) ContractPartyType.Contratante);
-      contratanteRelacion.Save();
-    }
-
-    private void CreateBeneficiary(PartyFields beneficiaryFields) {
-      var benefeciary = new Party(beneficiaryFields);
-      benefeciary.Save();
-
-      var benefeciaryRelation = new ContractParty(this.ContractId, benefeciary.PartyId, (int) ContractPartyType.Beneficiario);
-      benefeciaryRelation.Save();
-    }
 
     private string GenerateContractNumber() {
       StringBuilder contractNumber = new StringBuilder("PF");

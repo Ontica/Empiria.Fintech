@@ -2,17 +2,16 @@
 *                                                                                                            *
 *  Module   : Policies Management                          Component : Interface adapters                    *
 *  Assembly : Empiria.Insurtech.dll                        Pattern   : Output DTO                            *
-*  Type     : ParticipantFields                            License   : Please read LICENSE.txt file          *
+*  Type     : ContractPartyDto                             License   : Please read LICENSE.txt file          *
 *                                                                                                            *
-*  Summary  : Input DTO for an partincipant.                                                                 *
+*  Summary  : Output DTO for contract party.                                                                 *
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;
 
 namespace Empiria.Insurtech.Policies.Adapters {
 
-  /// <summary>Input DTO for an partincipant.</summary>
-  public class PartyFields {
+  public class PartyDto {
 
     public string UID {
       get; set;
@@ -74,6 +73,6 @@ namespace Empiria.Insurtech.Policies.Adapters {
       get; set;
     }
 
-  } // class ParticipantFields
+  }
 
-} //namespace Empiria.Insurtech.Policies.Adapters
+}

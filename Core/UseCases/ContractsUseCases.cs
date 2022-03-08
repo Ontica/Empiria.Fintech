@@ -40,6 +40,8 @@ namespace Empiria.Insurtech.Policies.UseCases {
       var contract = new Contract(fields);
       contract.Save();
 
+      contract.SaveContractParties(fields.Parties);
+
       var contractDto =  ContractMapper.Map(contract);
       return contractDto;
     }
@@ -68,8 +70,8 @@ namespace Empiria.Insurtech.Policies.UseCases {
       var contract = Contract.Parse(fields.ContractUID);
       contract.Update(fields);
 
-      contract.UpdateParty(fields.Contractor);
-      contract.UpdateParty(fields.Beneficiary);
+      //contract.UpdateParty(fields.Contractor);
+      //contract.UpdateParty(fields.Beneficiary);
 
       contract.Save();
       return ContractMapper.Map(contract);

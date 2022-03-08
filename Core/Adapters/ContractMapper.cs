@@ -8,6 +8,7 @@
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;
+using System.Collections.Generic;
 
 using Empiria.Insurtech.Policies.Domain;
 
@@ -25,10 +26,21 @@ namespace Empiria.Insurtech.Policies.Adapters {
         ContractNo = contract.ContractNo,
         ContractStatus = contract.ContractStatus,
         StartDate = contract.StartDate, 
-        EndDate = contract.EndDate
+        EndDate = contract.EndDate,
+        Parties = MapParties(contract.Parties)
       };
 
       return dto;
+    }
+
+    static internal FixedList<PartyDto> MapParties(List<Party> parties) {
+      var partiesDto = new List<PartyDto>();
+
+      foreach (var party in parties) {
+        partiesDto.Add(PartyMapper.Map(party));
+      }     
+     
+      return partiesDto.ToFixedList();
     }
 
 
