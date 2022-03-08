@@ -164,6 +164,15 @@ namespace Empiria.Insurtech.Policies.Domain {
       }
     }
 
+    public string Email {
+      get {
+        return this.ExtData.Get("Email", string.Empty);
+      }
+      set {
+        this.ExtData.Set("Email", value);
+      }
+    }
+
     [DataField("PartyKeywords")]
     public string PartyKeywords {
       get;
@@ -218,7 +227,9 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.INE = FieldPatcher.PatchField(fields.INE, this.INE);
       this.CURP = FieldPatcher.PatchField(fields.CURP, this.CURP);
       this.CellPhoneNumber = FieldPatcher.PatchField(fields.CellPhoneNumber, this.CellPhoneNumber);
-      this.PhoneNumber = FieldPatcher.PatchField(fields.PhoneNumber, this.PhoneNumber);        
+      this.PhoneNumber = FieldPatcher.PatchField(fields.PhoneNumber, this.PhoneNumber);     
+      this.Email = FieldPatcher.PatchField(fields.Email, this.Email);
+
     }
 
     #region Public methods
@@ -248,7 +259,8 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.PartyStatus = 'C';
       this.StartDate = DateTime.Today;
       this.EndDate = ExecutionServer.DateMaxValue;
-      this.PartyTrackDIF = "";      
+      this.PartyTrackDIF = "";     
+      this.Email = participantField.Email;
     }
 
     #endregion Private methods

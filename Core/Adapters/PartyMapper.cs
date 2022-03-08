@@ -16,7 +16,6 @@ namespace Empiria.Insurtech.Policies.Adapters {
   static internal class PartyMapper {
 
     internal static PartyDto  Map(Party party) {
-
       var dto = new PartyDto {
         UID = party.PartyTrackUID,
         Name = party.PartyFullName,
@@ -29,10 +28,11 @@ namespace Empiria.Insurtech.Policies.Adapters {
         PhoneNumber = party.PhoneNumber,
         CellPhoneNumber = party.CellPhoneNumber,
         CURP = party.CURP,
-        TypeId =  party.PartyTypeId
+        TypeId =  party.PartyTypeId,
+        Email = party.Email
       };
-      return dto;
-      throw new NotImplementedException();
+
+      return dto;     
     }
 
 
