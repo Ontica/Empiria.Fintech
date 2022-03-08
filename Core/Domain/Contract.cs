@@ -96,7 +96,6 @@ namespace Empiria.Insurtech.Policies.Domain {
       }
     }
 
-
     [DataField("ContractKeywords")]
     public string ContractKeywords {
       get;
@@ -184,6 +183,18 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.ContractPayment = FieldPatcher.PatchField(fields.PaymentType, this.ContractPayment);
       this.StartDate = FieldPatcher.PatchField(Convert.ToDateTime(fields.StartDate),this.StartDate);
     }
+
+
+
+    internal void UpdateParties(FixedList<PartyFields> parties) {
+
+      foreach (PartyFields partyFields in parties) {
+      UpdateParty(partyFields);
+      }
+
+      this.Parties = PartyData.GetParties(this.ContractId);
+    }
+
 
 
     internal void UpdateParty(PartyFields fields) {

@@ -31,7 +31,7 @@ namespace Empiria.Insurtech.Policies.Data {
 
     internal static List<Party> GetParties(int contractId) {
       var op = $"SELECT * FROM FTHParties INNER JOIN FTHContractParties ON " +
-               "FTHParties.PartyId = FTHContractParties.ContractPartyId " +
+               "FTHParties.PartyId = FTHContractParties.PartyId " +
               $"WHERE FTHContractParties.ContractId = {contractId} ";
 
       var dataOperation = DataOperation.Parse(op);

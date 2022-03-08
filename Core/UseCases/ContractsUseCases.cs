@@ -70,8 +70,7 @@ namespace Empiria.Insurtech.Policies.UseCases {
       var contract = Contract.Parse(fields.ContractUID);
       contract.Update(fields);
 
-      //contract.UpdateParty(fields.Contractor);
-      //contract.UpdateParty(fields.Beneficiary);
+      contract.UpdateParties(fields.Parties);
 
       contract.Save();
       return ContractMapper.Map(contract);
