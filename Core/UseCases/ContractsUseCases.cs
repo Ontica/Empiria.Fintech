@@ -57,12 +57,19 @@ namespace Empiria.Insurtech.Policies.UseCases {
     }
 
 
+    public FixedList<ContractDto> GetContracts() {
+      FixedList<Contract> contracts = Contract.GetContracts();
+
+      return ContractMapper.Map(contracts);
+    }
+
+
     public FixedList<ContracTypeDto> GetContractTypes() {
       FixedList<ContractType> list = ContractType.GetList();
 
       return ContracTypeMapper.Map(list);     
     }
-
+        
 
     public ContractDto UpdateContract(ContractFields fields) {
       Assertion.AssertObject(fields, "fields");

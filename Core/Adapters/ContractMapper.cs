@@ -17,6 +17,17 @@ namespace Empiria.Insurtech.Policies.Adapters {
   /// <summary>Mapping methods for policies.</summary>
   static internal class ContractMapper {
 
+    static internal FixedList<ContractDto> Map(FixedList<Contract> contracts) {
+      List<ContractDto> contractsDto = new List<ContractDto>();
+
+      foreach (Contract contract in contracts) {
+        contractsDto.Add(Map(contract));
+      }
+
+      return contractsDto.ToFixedList();
+    }
+
+
     static internal ContractDto Map(Contract contract) {
       var dto = new ContractDto {
         ContractTrackId = contract.ContractTrackId,
@@ -43,7 +54,7 @@ namespace Empiria.Insurtech.Policies.Adapters {
       return partiesDto.ToFixedList();
     }
 
-
+    
   } // class ContractMapper  
 
 } // namespace Empiria.Insurtech.Policies.Adapters

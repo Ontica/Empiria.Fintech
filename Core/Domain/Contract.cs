@@ -80,7 +80,7 @@ namespace Empiria.Insurtech.Policies.Domain {
       private set;
     }
 
-
+    
     [DataField("ContractExtData", IsOptional = true)]
     public JsonObject ExtData {
       get;
@@ -163,6 +163,17 @@ namespace Empiria.Insurtech.Policies.Domain {
     }
 
 
+    internal static FixedList<Contract> GetContracts() {
+      var contracts = ContractData.GetContracts();
+
+      foreach (Contract contract in contracts) {
+        contract.Parties = PartyData.GetParties(contract.ContractId);
+      }
+
+      return contracts;
+    }
+
+
     internal void Save() {   
       ContractData.Write(this);  
     }
@@ -189,7 +200,7 @@ namespace Empiria.Insurtech.Policies.Domain {
     internal void UpdateParties(FixedList<PartyFields> parties) {
 
       foreach (PartyFields partyFields in parties) {
-      UpdateParty(partyFields);
+        UpdateParty(partyFields);
       }
 
       this.Parties = PartyData.GetParties(this.ContractId);

@@ -46,6 +46,15 @@ namespace Empiria.Insurtech.Policies.Data {
     }
 
 
+    internal static FixedList<Contract> GetContracts() {
+      var sql = "SELECT * FROM FTHContracts";
+
+      var dataOperation = DataOperation.Parse(sql);
+
+      return DataReader.GetPlainObjectFixedList<Contract>(dataOperation);
+    }
+
+
     static internal int GetContractId() {
       return GetNextId("ContractId");
     }
