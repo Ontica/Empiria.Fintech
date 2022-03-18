@@ -173,6 +173,30 @@ namespace Empiria.Insurtech.Policies.Domain {
       }
     }
 
+    #region Temporal properties
+
+    public string City {
+      get {
+        return this.ExtData.Get("City", string.Empty);
+      }
+      set {
+        this.ExtData.Set("City", value);
+      }
+    }
+
+    public string State {
+      get {
+        return this.ExtData.Get("State", string.Empty);
+      }
+      set {
+        this.ExtData.Set("State", value);
+      }
+    }
+
+    #endregion Temporal properties
+
+
+
     [DataField("PartyKeywords")]
     public string PartyKeywords {
       get;
@@ -203,8 +227,10 @@ namespace Empiria.Insurtech.Policies.Domain {
       internal set;
     }
 
+
     #endregion Public properties
 
+    #region Public methods
 
     internal void Delete() {
       PartyData.Delete(this.PartyId);
@@ -229,10 +255,10 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.CellPhoneNumber = FieldPatcher.PatchField(fields.CellPhoneNumber, this.CellPhoneNumber);
       this.PhoneNumber = FieldPatcher.PatchField(fields.PhoneNumber, this.PhoneNumber);     
       this.Email = FieldPatcher.PatchField(fields.Email, this.Email);
-
+      this.City = FieldPatcher.PatchField(fields.City, this.City);
+      this.State = FieldPatcher.PatchField(fields.State, this.State);
     }
 
-    #region Public methods
 
     #endregion Public methods
 
@@ -261,6 +287,8 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.EndDate = ExecutionServer.DateMaxValue;
       this.PartyTrackDIF = "";     
       this.Email = participantField.Email;
+      this.State = participantField.State;
+      this.City = participantField.City;
     }
 
     #endregion Private methods

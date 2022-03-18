@@ -29,7 +29,9 @@ namespace Empiria.Insurtech.Policies.Adapters {
         CellPhoneNumber = party.CellPhoneNumber,
         CURP = party.CURP,
         TypeId =  party.PartyTypeId,
-        Email = party.Email
+        Email = party.Email,
+        City = party.City,
+        State = party.State
       };
 
       return dto;     
