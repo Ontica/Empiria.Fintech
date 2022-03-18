@@ -40,6 +40,10 @@ namespace Empiria.Insurtech.Policies.Adapters {
       get; internal set;
     }
 
+    public string ContractPaymentType {
+      get; internal set;
+    }
+
     public DateTime StartDate {
       get; internal set;
     }

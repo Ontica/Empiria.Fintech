@@ -36,6 +36,7 @@ namespace Empiria.Insurtech.Policies.Adapters {
         ContractTypeInfo = ContracTypeMapper.Map(contract.ContractType),
         ContractNo = contract.ContractNo,
         ContractStatus = contract.ContractStatus,
+        ContractPaymentType = contract.ContractPayment,
         StartDate = contract.StartDate, 
         EndDate = contract.EndDate,
         Parties = MapParties(contract.Parties)
