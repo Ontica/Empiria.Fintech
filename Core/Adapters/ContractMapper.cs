@@ -9,7 +9,7 @@
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 using System;
 using System.Collections.Generic;
-
+using Empiria.Contacts;
 using Empiria.Insurtech.Policies.Domain;
 
 namespace Empiria.Insurtech.Policies.Adapters {
@@ -37,13 +37,16 @@ namespace Empiria.Insurtech.Policies.Adapters {
         ContractNo = contract.ContractNo,
         ContractStatus = contract.ContractStatus,
         ContractPaymentType = contract.ContractPayment,
-        StartDate = contract.StartDate, 
+        StartDate = contract.StartDate,
         EndDate = contract.EndDate,
-        Parties = MapParties(contract.Parties)
+        Parties = MapParties(contract.Parties),
+        Agency = LoadAgency(contract.Agency),
+        Agent = LoadAgent(contract.Agent)
       };
 
       return dto;
     }
+        
 
     static internal FixedList<PartyDto> MapParties(List<Party> parties) {
       var partiesDto = new List<PartyDto>();
@@ -55,7 +58,27 @@ namespace Empiria.Insurtech.Policies.Adapters {
       return partiesDto.ToFixedList();
     }
 
-    
+
+    private static AgencyDto LoadAgency(Contact agency) {
+      var agencyDto = new AgencyDto {
+        UID = agency.UID,
+        Name = agency.FullName
+      };
+      
+      return agencyDto;
+    }
+
+
+
+    private static AgentDto LoadAgent(Contact agent) {
+      var agentDto = new AgentDto {
+        UID = agent.UID,
+        Name = agent.FullName
+      };
+
+      return agentDto;
+    }
+
   } // class ContractMapper  
 
 } // namespace Empiria.Insurtech.Policies.Adapters

@@ -15,7 +15,7 @@ using Empiria.Json;
 
 using Empiria.Insurtech.Policies.Adapters;
 using Empiria.Insurtech.Policies.Data;
-
+using Empiria.Contacts;
 
 namespace Empiria.Insurtech.Policies.Domain {
 
@@ -144,6 +144,20 @@ namespace Empiria.Insurtech.Policies.Domain {
     }
 
 
+    [DataField("AgencyId")]
+    public Contact Agency  {
+      get;
+      private set;
+    }
+
+
+    [DataField("AgentId")]
+    public Contact Agent {
+      get;
+      private set;
+    }
+
+
     #endregion Public properties
 
     #region Methods
@@ -241,7 +255,6 @@ namespace Empiria.Insurtech.Policies.Domain {
       this.EndDate = ExecutionServer.DateMaxValue;
       this.ContractTrackDIF = "";
       this.ContractPayment = fields.PaymentType; 
-
     }
 
 

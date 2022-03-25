@@ -56,6 +56,14 @@ namespace Empiria.Insurtech.Policies.Adapters {
       get; internal set;
     }
 
+    public AgencyDto Agency {
+      get; internal set;
+    }
+
+    public AgentDto Agent {
+      get; internal set;
+    }
+
   } // class ContractDto
 
 } // Empiria.Insurtech.Policies.Adapters
