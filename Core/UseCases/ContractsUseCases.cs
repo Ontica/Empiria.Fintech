@@ -56,6 +56,11 @@ namespace Empiria.Insurtech.Policies.UseCases {
       contract.Delete();
     }
 
+    public FixedList<ContractDto> SearchContract(string keywords) {
+      FixedList<Contract> contracts = Contract.GetContracts(keywords);
+      
+      return ContractMapper.Map(contracts);
+    }
 
     public FixedList<ContractDto> GetContracts() {
       FixedList<Contract> contracts = Contract.GetContracts();

@@ -47,7 +47,16 @@ namespace Empiria.Insurtech.Policies.Data {
 
 
     internal static FixedList<Contract> GetContracts() {
-      var sql = "SELECT * FROM FTHContracts";
+      var sql = "SELECT * FROM FTHContracts WHERE ContractStatus <> 'X'";
+
+      var dataOperation = DataOperation.Parse(sql);
+
+      return DataReader.GetPlainObjectFixedList<Contract>(dataOperation);
+    }
+
+
+    internal static FixedList<Contract> GetContracts(string keywords) {
+      var sql = $"SELECT * FROM FTHContracts WHERE ContractKeywords like '%{keywords}%' and ContractStatus <> 'X'";
 
       var dataOperation = DataOperation.Parse(sql);
 
@@ -79,10 +88,11 @@ namespace Empiria.Insurtech.Policies.Data {
       var op = DataOperation.Parse("writeFTHContracts", o.ContractTrackId, o.ContractTrackUID,
                                   o.ContractId, o.ContractType.Id, o.ContractNo, o.ExtData.ToString(),
                                   o.ContractKeywords, o.ModifiedById, o.ContractStatus, o.StartDate,
-                                 o.EndDate, o.ContractTrackDIF);
+                                 o.EndDate, o.ContractTrackDIF, o.Agency.Id, o.Agent.Id);
 
       DataWriter.Execute(op);
     }
+       
 
     #endregion Internal methods
 

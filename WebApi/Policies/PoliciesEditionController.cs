@@ -35,6 +35,17 @@ namespace Empiria.Insurtech.Policies.WebApi {
       }
     }
 
+    [HttpGet]
+    [Route("v1/insurtech/contracts/{keywords}")]
+    public CollectionModel SearchContract([FromUri] string keywords) {
+      using (var usecases = ContractsUseCases.UseCaseInteractor()) {
+        FixedList<ContractDto> contracts = usecases.SearchContract(keywords);
+
+       return new CollectionModel(base.Request, contracts);
+      }
+    }
+
+
 
     [HttpGet]
     [Route("v1/insurtech/contracts")]
